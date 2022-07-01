@@ -47,7 +47,7 @@ class LinkedList
 
   def at(index, node=head, count=0)
     if index >= self.size
-      nil
+      puts "that index is nil"
     elsif count != index
       at(index, node.next_node, count+1)
     elsif count == index
@@ -92,6 +92,29 @@ class LinkedList
       to_s(node.next_node, arr)
     end
   end
+
+  def insert_at(value, index, node=head, count=0)
+    puts "test"
+    if index >= self.size
+      puts "invalid value"
+    elsif index == 0
+      prepend(value)
+    elsif count != (index-1)
+      insert_at(value, index, node.next_node, count+1)
+    elsif count == (index-1)
+      node.next_node = create_node(value, node.next_node)
+    end
+  end
+
+  def remove_at(index, node=head, count=0)
+    if index >= self.size
+      puts "invalid index"
+    elsif index == 0
+      self.head = node.next_node
+    elsif count != (index-1)
+      remove_at(index, node.next_node, count+1)
+    elsif count == (index-1)
+      node.next_node = node.next_node.next_node
+    end
+  end    
 end
-
-
